@@ -271,7 +271,7 @@ def draw_src_dst_operations(context, layout, obj, settings):
         col = layout.column(align=True)
         row = col.row(align=True)
         row.operator('vertexcolormaster.rgb_to_grayscale',
-            text="Src RGB to luminosity")
+            text="Src RGB to grayscale")
         row = col.row(align=True)
         row.operator('vertexcolormaster.copy_channel', text="Src ({0}) to Dst RGB".format(
             settings.src_channel_id)).all_channels = True
@@ -295,6 +295,9 @@ def draw_src_dst_operations(context, layout, obj, settings):
     elif src_type == type_vcol and dst_type == type_normal:
         row = layout.row(align=True)
         row.operator('vertexcolormaster.color_to_normals', text="Color to Normals")
+    elif src_type == type_position and dst_type == type_vcol:
+        row = layout.row(align=True)
+        row.operator('vertexcolormaster.positions_to_color', text="Position to Color")
     else:
         # unsupported: vgroup <-> vgroup, uv <-> uv, vgroup <-> uv
         row = layout.row(align=True)
